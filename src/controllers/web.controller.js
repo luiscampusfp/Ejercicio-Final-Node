@@ -14,7 +14,7 @@ class Controlador {
                 }
             });
         } else if (req.query.correo) {
-            connection.query("SELECT COUNT(*) AS total FROM payment p INNER JOIN customer c ON p.customer_id = c.customer_id  WHERE email = '" + req.query.correo + "'", function (err, result) {
+            connection.query("SELECT COUNT(*) AS total, c.customer_id AS id FROM payment p INNER JOIN customer c ON p.customer_id = c.customer_id  WHERE email = '" + req.query.correo + "'", function (err, result) {
                 if (err) {
                     res.status(500).json({ mensaje: err.message });
                 } else {
